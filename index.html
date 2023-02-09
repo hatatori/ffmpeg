@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    
+    <section>
+        <p>Resize</p>
+        <div class="code code-ffmpeg">ffmpeg -i video_1920.mp4 -vf scale=640:360 video_640.mp4 -hide_banner</div>
+        <div class="image_example"><img src='./imgs/resize.png'></div>
+    </section>
+
+    <section>
+        <p>Crop timeline</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00 -t 00:30 output.mp4</div>
+        <div class="image_example"><img src='./imgs/timeline.png'></div>
+    </section>
+
+    <section>
+        <p>Crop area</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf "crop=189:59:136:45" output.mp4</div>
+        <div class="image_example"><img src='./imgs/crop_size.png'></div>
+    </section>
+
+    <section>
+        <p>Extract all frames</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 %d.png</div>
+        <div class="image_example"><img src='./imgs/pictures.png'></div>
+    </section>
+
+    
+
+</pre>
+
+
+</body>
+</html>

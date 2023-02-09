@@ -1,0 +1,50 @@
+:root{
+    --c1: #282a36;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Consolas', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: var(--c1);
+    padding: 10px;
+    width: 1000px;
+    margin: auto;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+p{
+    color: white;
+}
+
+section{
+    margin-bottom: 50px;
+}
+
+.image_example{
+    text-align: center;
+    margin: 5px;
+}
+
+.t-center{text-align: center;}
+
+.code{
+    color: white;
+    padding: 10px;
+    background-color: black;
+    /* margin: 5px; */
+    border-radius: 5px;
+}
+
+.t-orange{color: #ffb86c;}
+.t-blue{color: #2E95D3;}
+.t-pink{color: #DF3079;}
+.t-green{color: #00A67D;}
+.t-red{color: #F22C3D;}
+.t-yellow{color: #E9950C;}
+.t-white{color: #f8f8f2;}
+
