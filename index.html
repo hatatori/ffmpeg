@@ -34,6 +34,19 @@
         <div class="image_example"><img src='./imgs/pictures.png'></div>
     </section>
 
+    <section>
+        <p>Compression</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 20 output.mp4</div>
+        <div class="image_example"><img src='./imgs/compression.png'></div>
+    </section>
+
+    <section>
+        <p>Timelapse</p>
+        <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png output.mp4</div>
+        <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png -c:v libx264 output.mp4</div>
+        <div class="image_example"><img src='./imgs/timelapse.png'></div>
+    </section>
+
     
 
 </pre>

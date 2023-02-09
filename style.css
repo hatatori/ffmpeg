@@ -9,6 +9,7 @@ body{
     padding: 10px;
     width: 1000px;
     margin: auto;
+    max-width: 100%;
 }
 
 *{
@@ -23,12 +24,24 @@ p{
 
 section{
     margin-bottom: 50px;
+    /* background-color: #00000055; */
+    /* box-shadow: inset 0px 0px 50px 50px black; */
+    padding: 10px;
+    border-radius: 10px;
+    /* background-color: black; */
 }
 
 .image_example{
     text-align: center;
     margin: 5px;
+    width: 100%;
+    overflow-x: auto;
 }
+
+.image_example img{max-width: 100%;}
+.image_example-full img{max-width: initial;}
+
+
 
 .t-center{text-align: center;}
 
