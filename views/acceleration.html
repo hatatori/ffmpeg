@@ -1,0 +1,94 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<style>
+    .crop{
+        width: 124px;
+        height: 220px;
+        overflow: hidden;
+    }
+</style>
+
+<main class="page">
+    <section>
+        <p class="page_title">Video to images</p>
+        <div class="example">
+            <section class="select">
+                <div class="select_content code-min code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=0.5*PTS output.mp4</div>
+                <div class="select_window" id="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=0.5*PTS output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=1*PTS output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=2*PTS output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=PTS/2 output.mp4</div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section>
+        <p class="page_title">Example 1</p>
+        <div class="example">
+            <input type="range" id="inp_range_speed" min="16" max="150" value="60">
+            <div class="crop" id="square">
+                <img src="./input/imgs/1.png">
+                <img src="./input/imgs/2.png">
+                <img src="./input/imgs/3.png">
+                <img src="./input/imgs/4.png">
+            </div>
+            <div class="code-min code-ffmpeg" id="code_ops">ffmpeg -i input.mp4 -vf setpts=1*PTS output.mp4</div>
+        </div>
+    </section>
+</main>
+
+<script>
+
+    for(i=1;i<=470;i++){
+        let img = new Image()
+        img.src = `./input/imgs/${i}.png`
+        square.appendChild(img)
+    }
+
+    let a = 1
+    let speed = 1
+    let frame = 1
+
+    let size_h = 300
+    square.style.width = 169
+    square.style.height = size_h
+
+    // let fps = 60
+    let s;
+
+    let setspeed = n => speed = n
+
+    function frame_select(n){
+        square.scrollTo(0,n*size_h)
+    }
+
+    function float(a,b){
+        return parseFloat(a.toFixed(2))
+    }
+
+    inp_range_speed.onmousemove=function(){
+        setfps(parseInt(this.value))
+        let n1 = parseInt(this.value)/200 * 2
+        code_ops.innerHTML = render_ffmpeg(`ffmpeg -i input.mp4 -vf setpts=${float(2/(n1+0.4)-1,1)}*PTS output.mp4`)
+    }
+
+    function setfps(framerate){
+        let fps = 1000/framerate
+        clearInterval(s)
+        s = setInterval(()=>{ 
+            frame_select(++frame%470) 
+        },fps)
+        
+        if(framerate==0) clearInterval(s)
+    }
+
+    setfps(60)
+
+</script>

@@ -1,0 +1,26 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<main class="page">
+    <section>
+        <p class="page_title">Merge audio + video</p>
+        <section class="example">
+            <!-- <div class="code code-ffmpeg">ffmpeg -i input.mp4 -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k output.mp4</div> -->
+
+            <section class="select">
+                <section class="select_content code code-ffmpeg">ffmpeg -i input.mp4 -crf 15 output.mp4</section>
+                <section class="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 15 output.mp4 # better quality</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 20 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 25 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 30 output.mp4 # worst quality</div>
+                </section>
+            </section>
+        </section>
+    </section>
+
+   
+</main>

@@ -1,0 +1,110 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+<!-- <link rel="stylesheet" href="./style/sele.css"> -->
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<main class="page">
+    <section>
+        <p class="page_title">Resize</p>
+            <div class="example">
+                <img src='./imgs/resize.png'>
+                <section class="select">
+                    <div class="select_content code-min code-ffmpeg">ffmpeg -i input.mp4 -vf scale=640:360 output.mp4</div>
+                    <div class="select_window">
+                        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=640:360 output.mp4</div>
+                        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=-1:360 output.mp4</div>
+                        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=640:-1 output.mp4</div>
+                        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=iw/3:ih/3 output.mp4</div>
+                        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=iw*3:ih*3 output.mp4</div>
+                    </div>
+                </section>
+            </div>
+    </section>
+    <section>
+        <p class="page_title">Example 1</p>
+        <div class="example">
+            <div id="code_resize_2" class="code-min code-ffmpeg">ffmpeg -i input.mp4 -vf scale=360:640 output.mp4</div>
+            <div style="height: 360px;">
+                <img id="img_resize_2" src='./imgs/resize2.png' width="360">
+            </div>
+            <input id="inp_range_resize_2" type="range" min="360" max="640" value="1">
+        </div>
+    </section>
+    <section>
+        <p class="page_title">Example 2</p>
+        <div class="example">
+            <div id="code_resize_3" class="code-min code-ffmpeg">ffmpeg -i input.mp4 -vf scale=360:-1 output.mp4</div>
+            <div style="height: 360px;">
+                <img id="img_resize_3" src='./imgs/resize3.png' width="360">
+            </div>
+            <input id="inp_range_resize_3" type="range" min="360" max="640" value="1">
+            <p class="comment">the -1 keep aspect ratio</p>
+        </div>
+    </section>
+
+    <section>
+        <p class="page_title">Example 4</p>
+
+        <div class="example">
+
+            <input id="inp_range_resize_4" type="range" min="1" max="6" value="1" step="0.01">
+            <div class="code code-ffmpeg" id="code_resize_4">ffmpeg -i input.mp4 -vf scale=-1:ih/1 output.mp4</div> 
+
+            <section style="height: 600px; flex: 1; border-radius: 10px;">
+                <div id="comment_astronaut" class="description description-r" data-desc="1080x1920">
+                    <img id="img_astronaut" src='./imgs/astronaut.jpg' height="600">
+                </div>
+            </section>
+
+        </div>
+    </section>
+</main>
+
+
+<script>
+    inp_range_resize_2.addEventListener('mousemove', () => {
+
+        let val = inp_range_resize_2.value
+
+        let d1 = val
+        let d2 = (val/640*360)|0
+
+        img_resize_2.style.width = val + "px"
+        code_resize_2.innerHTML = render_ffmpeg(`ffmpeg -i input.mp4 -vf scale=${d1}:${d2} output.mp4`)
+    })
+
+    inp_range_resize_3.addEventListener('mousemove', () => {
+        let value = inp_range_resize_3.value
+        img_resize_3.style.width = value + "px"
+        code_resize_3.innerHTML = render_ffmpeg(`ffmpeg -i input.mp4 -vf scale=${value}:-1 output.mp4`)
+    })
+
+    inp_range_resize_4.addEventListener('mousemove', ()=>{
+        // img_astronaut.style.transition = "0.5s"
+        let val = inp_range_resize_4.value
+
+        let d1 = (1080/val).toFixed(2)|0
+        let d2 = (1920/val).toFixed(2)|0
+        let d3 = (600/val).toFixed(2)
+
+        img_astronaut.style.transition = '.1s'
+        code_resize_4.innerHTML = render_ffmpeg(`ffmpeg -i input.mp4 -vf scale=-1:ih/${val} output.mp4`)
+        img_astronaut.style.height = `${d3}px`
+
+        comment_astronaut.setAttribute('data-desc',`${d1}x${d2}`)
+
+    })
+
+    // select1.addEventListener('click', ()=>{
+    //     img_astronaut.style.transition="0.5s"
+    //     if(select1.position == 0) img_astronaut.style.height = 600+'px'
+    //     if(select1.position == 1) img_astronaut.style.height = 300+'px'
+    //     if(select1.position == 2) img_astronaut.style.height = 200+'px'
+    //     if(select1.position == 3) img_astronaut.style.height = 150+'px'
+    //     if(select1.position == 4) img_astronaut.style.height = 120+'px'
+    // })
+</script>
+

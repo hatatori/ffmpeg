@@ -1,0 +1,107 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+<style>
+    .cropped{
+        width: 120px;
+        height: 100px;
+        overflow: hidden;
+        /* border: solid 1px red; */
+        
+        
+    }
+.yellow-rect{
+        position: absolute; 
+        border: solid 2px yellow; 
+        /* background-color: #00551155; */
+        /* background: white; */
+        width: 120px; 
+        height: 100px; 
+        top: 0px;
+        left: 0px;
+        
+    }
+.square{
+        position: relative; 
+        display: flex; 
+        align-items: start; 
+        justify-content: center; 
+        gap: 10px;
+        overflow: hidden;
+    }
+    .cropped video{
+        /* cursor: none; */
+    }
+
+    .video_l{
+        /* cursor: none; */
+    }
+</style>
+
+<main class="page">
+    <section>
+        <p class="page_title">Crop Area</p>
+        <div class="example">
+            <img src="./imgs/crop_size.png" alt="">
+
+            <section class="select" id="select1">
+                <div class="select_content code-min code-ffmpeg">ffmpeg -i input.mp4 -vf crop=189:59:136:45 output.mp4</div>
+
+                <div class="select_window" id="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf crop=189:59:136:45 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf crop=w=189:h=59:x=136:y=45 output.mp4</div>
+                </div>
+            </section>
+
+        </div>
+    </section>
+
+    <section>
+        <p class="page_title">Example 1</p>
+        <div class="example">
+            
+            <section class="square flex-center">
+        
+                <div style="position: relative; " >
+                    <div id="yellow_rect" class="yellow-rect"></div>
+                    <video id="video_l" muted loop autoplay src="./input/input1.mp4" width="300px"></video>
+                </div>
+        
+                <div style="display: grid; gap: 10px; width: 300px;">
+                    <div class="cropped" id="cropped">
+                        <video id="video_r" muted autoplay loop src="./input/input1.mp4" width="300px"></video>
+                    </div>
+                    <p id="t1" class="code code-ffmpeg">crop=300:350:350:150</p>
+                    <p id="t2" class="code code-ffmpeg">crop=w=300:h=350:x=400:y=150</p>
+                </div>
+                
+            </section>
+        </div>
+    </section>
+</main>
+
+<script>
+    w = 100
+    h = 150
+
+    yellow_rect.style.width = w
+    yellow_rect.style.height = h
+
+    cropped.style.width = w
+    cropped.style.height = h
+
+    video_l.onmousemove=function(e){
+
+        t1.innerHTML = render_ffmpeg(`crop=300:350:${e.offsetX-(w/2)}:${e.offsetY-(w/2)}`)
+        t2.innerHTML = render_ffmpeg(`crop=w=300:h=350:x=${e.offsetX-(w/2)}:y=${e.offsetY-(w/2)}`)
+
+        yellow_rect.style.left = e.offsetX-(w/2)
+        yellow_rect.style.top = e.offsetY-(h/2)
+
+        video_r.style.marginLeft = -e.offsetX+(w/2)
+        video_r.style.marginTop = -e.offsetY+(h/2)
+    }
+</script>

@@ -1,0 +1,122 @@
+
+<style>
+    video{
+        background-color: black;
+    }
+
+
+    img{
+        cursor: pointer;
+    }
+
+    .square{
+     
+    }
+
+    /* square_imgs */
+    .square_imgs1{
+        width: 220px;
+        height: 400px;
+        overflow:hidden;
+        /* overflow-x: hidden; */
+        padding: 0px;
+    }
+
+    .square_imgs1 img{
+        height: 100%;
+        
+    }
+    
+    /* square_imgs2 */
+    .square_imgs2{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        height: auto;
+        height: 400px;
+        overflow: auto;
+        /* background-color: #00000055; */
+        padding: 1em;
+        text-align: center;
+        justify-content: center;
+        border:dashed 1px black
+    }
+
+    .square_imgs2 p{
+        display: grid;
+        color: #FFFFFF55;
+    }
+    .square_imgs2 small{
+        font-size: 11px;
+        text-align: center;
+    }
+
+    .square_imgs2 img{
+        height: 100px;
+        opacity: 0.3;
+    }
+
+    .square_imgs2 img:hover{
+        opacity: 1;
+    }
+
+    /* square_imgs3 */
+    .group{
+        /* display: grid;  */
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        /* align-items: start; */
+        /* padding: 20px 0px ; */
+        display: flex;
+        gap: 1em;
+        justify-content: space-between;
+    }
+    .group > div{
+        display: flex;
+        margin: auto;
+    }
+
+</style>
+<link rel="stylesheet" href="../style.css">
+<script defer src="../render.js"></script>
+
+<main class="container">
+    <div class="square">
+        <p class="code code-ffmpeg">ffmpeg -i input.mp4 %04d.png</p>
+        <input type="range" value=1 min="1" max="200" id="bar_range" style="width: 100%;">
+        <p class="code code-ffmpeg" style="width: 220px;" id="p_number">0001.png</p>
+        <div class="group">
+            <div>
+                <div class="square_imgs1" id="square_imgs1"></div>
+            </div>
+            <div class="square_imgs2" id="square_imgs2"></div>
+            <div class="square_imgs3" id="square_imgs3">
+                <img height="400px" id="img_example" src="../output/video_to_images/0001.png">
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    let y = 0
+    bar_range.onmousemove=function(){
+        let val = this.value|0
+        square_imgs1.scrollTo(0,val*400)
+        p_number.innerHTML = render_ffmpeg(val.toString().padStart(4, '0')+".png")
+    }
+
+    for(let i=1;i<200;i++){
+        url = `../output/video_to_images/${i.toString().padStart('4', 0)}.png`
+        square_imgs1.innerHTML += `<a target="blank" href="${url}"><img src="${url}"></a>`
+    }
+
+    for(let i=1;i<31;i++){
+        file_name = i.toString().padStart('4', 0)
+        url = `../output/video_to_images/${i.toString().padStart('4', 0)}.png`
+        square_imgs2.innerHTML += `
+            <p>
+                <img onclick="img_example.src='${url}'" src="${url}">
+                <small>${file_name}.png</small>
+            </p>
+        `
+    }
+</script>

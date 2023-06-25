@@ -1,0 +1,99 @@
+<style>
+    video{
+        background-color: black;
+    }
+
+    .cropped{
+        width: 120px;
+        height: 100px;
+        overflow: hidden;
+        /* border: solid 1px red; */
+    }
+
+    .yellow-rect{
+        position: absolute; 
+        border: solid 2px yellow; 
+        /* background-color: #00551155; */
+        /* background: white; */
+        width: 120px; 
+        height: 100px; 
+        top: 0px;
+        left: 0px;
+    }
+
+    .square{
+        position: relative; 
+        display: flex; 
+        align-items: start; 
+        justify-content: center; 
+        gap: 10px;
+    }
+    .cropped video{
+        cursor: none;
+    }
+</style>
+
+<link rel="stylesheet" href="../style.css">
+<script defer src="../render.js"></script>
+
+<div class="container">
+    
+    <section class="square">
+        
+        <div style="position: relative;">
+            <div id="yellow_rect" class="yellow-rect"></div>
+            <video id="video_l" muted loop src="../input/input1.mp4" width="300px"></video>
+            <p>Click on the image</p>
+        </div>
+
+        <div style="display: grid; gap: 10px; width: 300px;">
+            <div class="cropped" id="cropped">
+                <video id="video_r" muted loop src="../input/input1.mp4" width="300px"></video>
+            </div>
+            <p id="t1" class="code code-ffmpeg">crop=300:350:350:150</p>
+            <p id="t2" class="code code-ffmpeg">crop=w=300:h=350:x=400:y=150</p>
+        </div>
+    </section>
+
+    <section>
+        <p>Example</p>
+        <p class="code code-ffmpeg">ffmpeg -i input.mp4 -vf crop=300:350:350:150 output.mp4</p>
+        <p class="code code-ffmpeg">ffmpeg -i input.mp4 -vf crop=w=300:h=350:x=400:y=150 output.mp4</p>
+        <div class="image_example">
+            <video muted autoplay controls loop  src="../output/crop_area/1.mp4"></video>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    w = 100
+    h = 100
+
+    yellow_rect.style.width = w
+    yellow_rect.style.height = h
+
+    cropped.style.width = w
+    cropped.style.height = h
+
+    video_l.onmousemove=function(e){
+
+        t1.innerHTML = render_ffmpeg(`crop=300:350:${e.offsetX-(w/2)}:${e.offsetY-(w/2)}`)
+        t2.innerHTML = render_ffmpeg(`crop=w=300:h=350:x=${e.offsetX-(w/2)}:y=${e.offsetY-(w/2)}`)
+
+        yellow_rect.style.left = e.offsetX-(w/2)
+        yellow_rect.style.top = e.offsetY-(h/2)
+
+        video_r.style.marginLeft = -e.offsetX+(w/2)
+        video_r.style.marginTop = -e.offsetY+(h/2)
+    }
+
+    video_l.onmouseup=function(){
+        this.pause()
+        video_r.pause()
+    }
+    video_l.onmousedown=function(){
+        this.play()
+        video_r.play()
+    }
+</script>

@@ -1,0 +1,26 @@
+@import './ffmpeg.css';
+@import './page.css';
+@import './select.css';
+
+:root{
+    --c1: #282a36;
+    --c1: #343434;
+    --c3: #232323;
+    --c4: #1c1c1f;
+    --c5: #31313c;
+    --c6: #282830;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Consolas', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--c4);
+    background-color: #282a36;
+    /* background-color: #282a36; */
+}

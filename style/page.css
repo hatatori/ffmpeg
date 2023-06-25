@@ -1,0 +1,89 @@
+.page{
+    padding: 5em;
+    padding-top: 2em;
+}
+
+.page > section{
+    margin: 3em 0;
+}
+
+.page_title{
+    color: white;
+    padding: 10px 20px;
+    background-color: #191a21;
+    white-space: nowrap;
+    width: min-content;
+    border-radius: 10px 10px 0 0;
+}
+
+.page_title2{
+    margin-top: 10px;
+    border-radius: 5px 5px 0 0;
+    background-color: #21222c;
+    padding: 3px 10px;
+    width: min-content;
+    white-space: nowrap;
+}
+
+.example{
+    /* text-align: center; */
+    color: white;
+    /* margin: 5px; */
+    width: 100%;
+    /* overflow-x: auto; */
+    /* border: solid 1px #555; */
+    background-color: #111;
+    background-color: #191a21;
+    padding: 2em;
+}
+
+/* comment */
+.comment{
+    color: white;
+    border-top: solid 1px #3c3d51;
+    margin: 10px 0;
+    padding: 10px 0;
+}
+
+.comment2{
+    background-color: #0d0e10;
+    padding: 5px;
+    width: min-content;
+    white-space: nowrap;
+    margin: 1px 0;
+}
+
+/* description */
+.description{
+    position: relative;
+    width: min-content;
+}
+
+.description-r::after, .description::after{
+    content: attr(data-desc);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: #999;
+    background-color: #000000;
+    padding: 3px 5px;
+    font-size: 13px;
+}
+
+.description-r::after{
+    right: 0px;
+    left: initial;
+}
+
+/* flex */
+.flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-1{
+    flex: 1;
+}
+
+/* a link  url */
+a{color: yellow;}

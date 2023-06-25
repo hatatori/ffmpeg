@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="render.js"></script>
+    <script defer src="index.js"></script>
+</head>
+
+<body style="display: grid; grid-template-columns: 1fr;">
+    
+<main class="container">
+        <!-- <section class="txt_group">
+        <textarea id="textarea_script"></textarea>
+        <div class="code code-ffmpeg" id="div_script"></div>
+    </section> -->
+
+    <section>
+        <p>Resize</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=640:360 output.mp4</div>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=iw/3:ih/3 output.mp4</div>
+        <div class="image_example"><img src='./imgs/resize.png'></div>
+        <div class="image_example">
+            <!-- <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf scale=iw/3:ih/3 output.mp4</div> -->
+            <input id="inp_range_resize_2" type="range" min="360" max="640" value="640">
+            <div id="code_resize_2" class="code-min code-ffmpeg" style="margin: auto;">ffmpeg -i input.mp4 -vf scale=640:360 output.mp4</div>
+            <div style="width: 640px; height: 360px; margin: auto;">
+                <img id="img_resize_2" src='./imgs/resize2.png'>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <p>Crop timeline</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00 -t 00:30 output.mp4</div>
+        <div class="image_example"><img src='./imgs/timeline.png'></div>
+    </section>
+
+    <section>
+        <p>Crop area</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf crop=189:59:136:45 output.mp4</div>
+        <div class="image_example"><img src='./imgs/crop_size.png'></div>
+    </section>
+
+    <section>
+        <p>Video to images</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 %d.png</div>
+        <div class="image_example"><img src='./imgs/pictures.png'></div>
+    </section>
+
+    <section>
+        <p>Compression</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -crf 20 output.mp4  #18-28</div>
+        <div class="image_example"><img src='./imgs/compression.png'></div>
+    </section>
+
+    <section>
+        <p>Timelapse</p>
+        <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png output.mp4</div>
+        <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png -c:v libx264 output.mp4</div>
+        <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png -c:v libx264 output.mp4</div>
+        <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png -c:v libx264 -r 24 output.mp4 # -r (speed video in fps) </div>
+        <div class="image_example"><img src='./imgs/timelapse.png'></div>
+    </section>
+
+    <section>
+        <p>Acceleration</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=0.5*PTS output.mp4 #faster</div>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vf setpts=2.0*PTS output.mp4 #slower</div>
+        <div class="image_example"><img src='./imgs/speed.png'></div>
+    </section>
+
+    <section>
+        <p>Specific frame</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -vframes 4 output.png</div>
+        <div class="image_example"><img src='./imgs/frame.png'></div>
+    </section>
+
+    <section>
+        <p>Remove audio from video</p>
+        <div class="code code-ffmpeg">ffmpeg -i input.mp4 -an output.mp4</div>
+    </section>
+
+    <section>
+        <p>Concat videos</p>
+        <div class="code code-ffmpeg">(for %i in (*.mp4) do @echo file '%i') > list.txt </div>
+        <div class="code code-ffmpeg">(for %i in (input/*.mp4) do @echo file '%i') > input/list.txt </div>
+        <div class="code code-ffmpeg">ffmpeg -f concat -i input/list.txt -c copy output/output.mp4</div>
+        <div class="code code-ffmpeg">(for %i in (input/*.mp4) do @echo file '%i') > input/list.txt && ffmpeg -f concat -i input/list.txt -c copy output/output.mp4</div>
+    </section>
+
+    <!-- (echo file 'first file.mp4' & echo file 'second file.mp4' )>list.txt -->
+    <!-- ffmpeg -safe 0 -f concat -i list.txt -c copy output.mp4 -->
+    
+
+</main>
+
+
+</body>
+</html>

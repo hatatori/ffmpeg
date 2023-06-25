@@ -1,0 +1,24 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<style></style>
+
+<main class="page">
+    <section>
+        <p class="page_title">Video to images</p>
+        <div class="example">
+            <img src="imgs/pictures.png">
+            <section class="select">
+                <div class="select_content code-min code-ffmpeg">ffmpeg -i input.mp4 %d.png</div>
+                <div class="select_window" id="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 %d.png # 1.png</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 %04d.png # 0001.png</div>
+                </div>
+            </section>
+        </div>
+    </section>
+</main>

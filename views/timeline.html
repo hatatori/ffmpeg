@@ -1,0 +1,64 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+<!-- <link rel="stylesheet" href="./style/sele.css"> -->
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<main class="page">
+    <section>
+        <p class="page_title">Timeline</p>
+        <div class="example">
+            <img src='./imgs/timeline.png'>
+            <section class="select" id="select1">
+                <div class="select_content code-min code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00 -t 00:30 output.mp4</div>
+                <div class="select_window" id="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 10 -t 20 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00 -t 00:30 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00:00 -t 00:00:30 output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -ss 01:00:00 -t 30 output.mp4</div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <section>
+        <p class="page_title">Example 1</p>
+        <div class="example">
+            <div style="cursor: pointer;" id="a1" class="description description-r" data-desc="1080x1920">
+                <video id="v1" src="./input/input1.mp4" muted loop autoplay width="300"></video>
+                <div class="bar_blue" style="background-color: black;">
+                    <p id="bar" style="background-color: yellow; height: 10px; translate: 30px;"></p>
+                </div>
+            </div>
+
+            <div class="code-min code-ffmpeg">ffmpeg -i input.mp4 -ss 2 -t 3 output.mp4</div>
+        </div>
+
+    </section>
+</main>
+
+<script>
+    v1.addEventListener('click',()=>{
+        // v1.currentTime = 0
+        
+        console.log(v1.currentTime)
+        if(v1.currentTime >= 2.9) v1.currentTime = 0
+
+        v1.paused ? v1.play() : v1.pause()
+        
+    })
+
+    setInterval(()=>{
+        let t1 = v1.currentTime.toFixed(1)
+        if(t1 == 3) {
+            v1.pause()
+            // v1.currentTime = 0
+        }
+        a1.setAttribute('data-desc', t1+'s')
+
+        bar.style.width = (v1.currentTime*200/3)/2
+
+    },1000/60)
+    
+</script>

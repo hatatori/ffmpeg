@@ -1,0 +1,25 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<main class="page">
+    <section>
+      <p class="page_title">Images to video (timelapse)</p>
+      <div class="example">
+        <img src="./imgs/timelapse.png" alt="">
+        <div class="select">
+          <div class="select_content code code-ffmpeg">ffmpeg -i imgs/%d.png output.mp4</div>
+          <div class="select_window">
+            <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png output.mp4</div>
+            <div class="code code-ffmpeg">ffmpeg -i imgs/%d.png -vf fps=30 output.mp4</div>    
+            <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png output.mp4</div>    
+            <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png -r 30 output.mp4 # -r (set fps)</div>    
+            <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png -c:v libx264 output.mp4</div>    
+            <div class="code code-ffmpeg">ffmpeg -framerate 60 -i imgs/%d.png -c:v libx265 output.mp4</div>    
+          </div>
+        </div>
+      </div>
+    </section>
+</main>

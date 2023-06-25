@@ -1,0 +1,62 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+<!-- <link rel="stylesheet" href="./style/sele.css"> -->
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<main class="page">
+    <section>
+        <p class="page_title">Merge audio + video</p>
+        <section class="example">
+            <p class="page_title2">Convert to aac</p>
+            <div class="code code-ffmpeg">ffmpeg -i input.mp4 input.aac</div>
+
+            <p class="page_title2">Merge video + audio</p>
+            <div class="code code-ffmpeg">ffmpeg -i input.mp4 -i input.aac output.aac</div>
+
+            <div class="comment">no use mp3</div>
+        </section>
+    </section>
+    <section>
+        <p class="page_title">Concat videos</p>
+        <div class="example">
+            <img src="./imgs/merge_videos.png">
+            <div class="page_title2">Create file</div>
+            <section class="select">
+                <div class="select_content code code-ffmpeg">(for %i in (*.mp4) do @echo file '%i') > list.txt</div>
+                <div class="select_window">
+                    <div class="code code-ffmpeg">(for %i in (*.mp4) do @echo file '%i') > list.txt</div>
+                    <div class="code code-ffmpeg">(for %i in (input/*.mp4) do @echo file '%i') > input/list.txt</div>
+                    <div class="code code-ffmpeg">(echo file 'input1.mp4' & echo file 'input2.mp4' ) > list.txt</div>
+                </div>
+            </section>
+
+            <p class="page_title2">Render</p>
+            <section class="select">
+                <div class="select_content code code-ffmpeg">
+                    ffmpeg -f concat -i list.txt output.mp4
+                </div>
+                <div class="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -f concat -i list.txt output.mp4</div>
+                    <div class="code code-ffmpeg">ffmpeg -f concat -i input/list.txt output/output.mp4</div>
+                </div>
+            </section>
+            
+
+            <p class="page_title2">Create and render</p>
+            <section class="select">
+                <div class="select_content code code-ffmpeg" style="width: 830px; white-space: initial;">(for %i in (*.mp4) do @echo file '%i') > list.txt && ffmpeg -f concat -i list.txt output.mp4</div>
+                <div class="select_window">
+                    <div class="code code-ffmpeg">(for %i in (*.mp4) do @echo file '%i') > list.txt && ffmpeg -f concat -i list.txt output.mp4</div>
+                    <div class="code code-ffmpeg" style="width: 830px; white-space: initial;">(for %i in (input/*.mp4) do @echo file '%i') > input/list.txt && ffmpeg -f concat -i input/list.txt output/output.mp4</div>
+                </div>
+            </section>
+
+
+            
+        </div>
+    </section>
+   
+</main>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/ffmpeg.css">
+
+    <!-- <script src="./script/render.js" defer></script> -->
+
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <style>
+        .screen{
+            display: flex;
+            height: 100vh;            
+        }
+        .screen-l{
+            border: none;
+            border-right: solid 1px black;
+            
+        }
+        #ifr{
+            border: none;
+        }
+
+        p{
+            color: white;
+            padding: 10px;
+        }
+
+        p:hover{
+            background-color: #191a21;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<section class="screen flex w-screen overflow-hidden" id="container">
+    <div class="screen-l border-r border-[#191a21] h-screen w-64 gap-1 divide-y divide-[#191a21]">
+        <p onclick="select_page('resize')">Resize</p>
+        <p onclick="select_page('crop_area')">Crop Area</p>
+        <p onclick="select_page('timeline')">Timeline</p>
+        <p onclick="select_page('video_to_images')">Video to images</p>
+        <p onclick="select_page('images_to_video')">Images to video (Timelapse)</p>
+        <p onclick="select_page('crop_area')">Crop Area</p>
+        <p onclick="select_page('quality')">Quality</p>
+        <p onclick="select_page('acceleration')">Acceleration</p>
+        <p onclick="select_page('frame')">Frame</p>
+        <p onclick="select_page('concat_videos')">Concat videos</p>
+        <p onclick="select_page('audios')">Audios</p>
+    </div>
+    <iframe id="ifr" class="screen-r flex-1 h-screen screen-r" src="./views/start.html"></iframe>
+</section>
+
+<script>
+    let page_name = location.search.match(/page=(\w+)/)[1]
+
+    ifr.src=`./views/${page_name}.html`
+
+    function select_page(page_name){
+        window.location = `?page=${page_name}`
+        // window.location = "?ok=3"
+        // console.log(page_name)
+        // ifr.src=`./views/${page_name}.html`
+    }
+</script>
+
+</body>
+</html>

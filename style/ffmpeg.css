@@ -1,0 +1,24 @@
+.t-orange{color: #f8b369;}
+.t-blue{color: #2E95D3;}
+.t-pink{color: #ff79c6;}
+.t-green{color: #50fa7b;}
+.t-red{color: #ff5555;}
+.t-yellow{color: #e9f284;}
+.t-white{color: #f8f8f2;}
+.t-gray{color: #ffffff55;}
+
+
+.code, .code-min{
+    color: white;
+    padding: 10px;
+    background-color: black;
+    background-color: #21222c;
+    font-size: 16px;
+    font-family: monospace;
+    white-space: nowrap;
+}
+
+.code-min{
+    width: min-content;
+    white-space: nowrap;
+}

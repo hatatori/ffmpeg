@@ -1,0 +1,59 @@
+<base href="..">
+
+<link rel="stylesheet" href="./style/style.css">
+
+<script defer src="./script/render.js"></script>
+<script defer src="./script/select.js"></script>
+
+<style></style>
+
+<main class="page">
+    <section>
+        <p class="page_title">Set volume video</p>
+        <section class="example">
+
+            <section class="select">
+                <div class="select_content code code-ffmpeg">
+                    ffmpeg -i input.mp4 -af volume=1.5 output.wav
+                </div>
+                <div class="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -af volume=1.5 output.wav</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.mp4 -af volume=0.5 output.wav</div>
+                </div>
+            </section>
+
+        </section>
+    </section>
+
+    <section>
+        <p class="page_title">Set volume audio</p>
+        <section class="example">
+            <section class="select">
+                <div class="select_content code code-ffmpeg">
+                    ffmpeg -i input.mp3 -va volume=1.5 output.mp3
+                </div>
+                <div class="select_window">
+                    <div class="code code-ffmpeg">ffmpeg -i input.wav -va volume=1.5 output.wav</div>
+                    <div class="code code-ffmpeg">ffmpeg -i input.wav -va volume=0.5 output.wav</div>
+                </div>
+            </section>
+        </section>
+    </section>
+
+    <section>
+        <p class="page_title">Remove volume</p>
+        <section class="example">
+            <div class="code code-ffmpeg">ffmpeg -i input.mp4 -an output.mp4</div>
+        </section>
+    </section>
+    <section>
+        <p class="page_title">Merge audio+video</p>
+        <div class="example">
+            <p class="page_title2">Convert to aac</p>
+            <div class="code code-ffmpeg">ffmpeg -i input.mp4 audio.aac</div>
+
+            <p class="page_title2">Merge audio + video</p>
+            <div class="code code-ffmpeg">ffmpeg -i input.mp4 -i audio.aac output.mp4</div>
+        </div>
+    </section>
+</main>
